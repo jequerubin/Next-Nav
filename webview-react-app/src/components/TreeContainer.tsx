@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LayoutFlow from './LayoutFlow';
 import { ReactFlowProvider } from 'reactflow';
-import Node from './Node';
+import NodeModal from './Modals';
 
 export type FileNode = {
   id: number;
@@ -89,7 +89,7 @@ export default function TreeContainer() {
             //   <ul>{obj.contents}</ul>
             //   <button>View</button>
             // </div>
-            <Node obj={obj} />
+            <NodeModal obj={obj} />
           ),
         },
         position,

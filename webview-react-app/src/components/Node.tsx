@@ -33,7 +33,7 @@ const Node = ({ obj }: Props): JSX.Element => {
           </Text>
         </CardBody>
         <CardFooter>
-          <Button colorScheme="blue">View here</Button>
+          test
         </CardFooter>
       </Card>
     </div>
