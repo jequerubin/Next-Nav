@@ -1,5 +1,6 @@
 import React from 'react';
 import { FileNode } from './TreeContainer';
+import FileAddModal from './FileAddModal';
 import {
   Card,
   CardHeader,
@@ -33,7 +34,7 @@ const Node = ({ obj }: Props): JSX.Element => {
           </Text>
         </CardBody>
         <CardFooter>
-          <Button colorScheme="blue">View here</Button>
+          <FileAddModal/>
         </CardFooter>
       </Card>
     </div>
