@@ -5,10 +5,10 @@ import { VsCodeApiProvider } from "./VsCodeApiContext"; // Make sure you import 
 
 //wrap app in VsCodeApiProvider component
 ReactDOM.render(
-  <VsCodeApiProvider>
+  // <VsCodeApiProvider>
     <React.StrictMode>
       <App />
-    </React.StrictMode>
-  </VsCodeApiProvider>,
+    </React.StrictMode>,
+  // </VsCodeApiProvider>,
   document.getElementById("root")
 );

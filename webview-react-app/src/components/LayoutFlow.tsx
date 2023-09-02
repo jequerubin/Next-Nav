@@ -284,7 +284,7 @@ export default function LayoutFlow({
                       setDirFormValue(e.target.value);
                     }}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
+                      if (e.key === 'Enter' && dirFormValue) {
                         handleSubmitDir();
                         close();
                         setDirFormValue("");
@@ -315,7 +315,7 @@ export default function LayoutFlow({
           size="lg"
           aria-label="switch view"
           variant="ghost"
-          icon={view === "DOWN" ? <Icon style={{rotate: "-90deg"}} as={BiSitemap}/> : <Icon as={BiSitemap}/>}
+          icon={<Icon style={view === "DOWN" ? {rotate: "-90deg"} : {rotate:"0deg"}} as={BiSitemap}/> }
           _hover={{bg: 'white', textColor: 'black'}} 
           onClick={() => {
             if(view === "DOWN") {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FileNode } from '../TreeContainer';
+import DetailsBox from '../DetailsBox';
 import {
   Modal,
   ModalOverlay,
@@ -8,17 +9,8 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverArrow,
-  Portal,
   Stack,
-  Box,
-  Button,
   Icon,
-  Flex,
   IconButton,
   FormControl,
   Input,
@@ -42,6 +34,7 @@ const DetailsView = ({ props, handlePostMessage, getIcon, isOpen, onClose }: Pro
   const ref = React.useRef(null);
   const [addFileValue, setAddFileValue] = useState('');
 
+
   if (!contents) {
     contents = [];
   }
@@ -52,66 +45,17 @@ const DetailsView = ({ props, handlePostMessage, getIcon, isOpen, onClose }: Pro
   for (let i = 0; i < contents.length; i++) {
     const icon = getIcon(contents[i]);
     modalFiles.push(
-      <Box>
-        {' '}
-        <Flex gap="2">
-          {' '}
-          <Button
-            bgColor="#010101"
-            color="white"
-            flexGrow="3"
-            _hover={{ bg: 'white', textColor: 'black' }}
-            leftIcon={<Icon as={icon[0]} />}
-            onClick={() => {
-              handlePostMessage(path.concat("/", contents[i]), "open_file");
-            }}
-          >
-            {' '}
-            {contents[i]}
-          </Button>
-          {/* <Spacer /> */}
-          <Popover>
-            <PopoverTrigger>
-              <IconButton
-                isRound={true}
-                variant="solid"
-                size="md"
-                colorScheme="red"
-                aria-label="Done"
-                icon={<Icon as={PiTrashFill} />}
-              />
-            </PopoverTrigger>
-            <Portal containerRef={ref}>
-              <PopoverContent
-                // boxShadow="2xl"
-                bgColor="#010101"
-                textColor="#FFFFFF"
-                borderRadius="10px"
-                maxWidth="unset"
-                width="unset"
-              >
-                <PopoverArrow bgColor="#010101" />
-                <PopoverBody>
-                  <Button
-                    size="sm"
-                    colorScheme="red"
-                    onClick={(e) => {
-                      handlePostMessage(path.concat('/', contents[i]), 'deleteFile');
-                    }}
-                  >
-                    Confirm
-                  </Button>
-                </PopoverBody>
-              </PopoverContent>
-            </Portal>
-          </Popover>
-        </Flex>
-      </Box>
+      <DetailsBox 
+        handlePostMessage={handlePostMessage} 
+        icon={icon[0]} 
+        content={contents[i]} 
+        path={path}
+      />
     );
   }
 
   return (
-    <Modal isCentered isOpen={isOpen} onClose={onClose} trapFocus={false}>
+    <Modal isCentered onOverlayClick={() => false} isOpen={isOpen} onClose={onClose} trapFocus={false}>
       <ModalOverlay
         bg="blackAlpha.300"
         backdropFilter="blur(10px) hue-rotate(90deg)"
